@@ -10,6 +10,7 @@ namespace leetcode232
     /// </summary>
     class MyQueue
     {
+        // TODO：另一种解决思路：使用两个栈：一个输入栈，一个输出栈
         private readonly Stack<int> _stack;
         /** Initialize your data structure here. */
         public MyQueue()
