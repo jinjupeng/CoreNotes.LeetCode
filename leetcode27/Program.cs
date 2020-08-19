@@ -23,8 +23,16 @@ namespace leetcode27
 
         It doesn't matter what you leave beyond the returned length.
         */
+        /// <summary>
+        /// 27. 移除元素
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="val"></param>
+        /// <returns></returns>
         public int RemoveIntElement(int[] nums, int val)
         {
+            
+            // 一种解题思路：
             int a = 0;
             for (int i = 0; i < nums.Length; i++)
             {
@@ -34,13 +42,31 @@ namespace leetcode27
                 }
             }
             return a;
+            /*
+             // 相似的解题思路
+            int a = 0;
+            for (int i = 0, j = nums.Length - 1; i < j;)
+            {
+                if (nums[i] != val)
+                {
+                    nums[a] = nums[i];
+                    a++;
+                }
+
+                i++;
+            }
+
+            return a;
+            */
+
         }
         public static void Main()
         {
             var sol = new Solution();
-            int[] nums = { 3, 2, 2, 3 };
+            int[] nums = { 2 };
             int val = 3;
-            Console.WriteLine(sol.RemoveIntElement(nums, val));
+            sol.RemoveIntElement(nums, val);
+            Console.WriteLine();
         }
     }
 }
