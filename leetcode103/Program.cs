@@ -52,12 +52,11 @@ namespace leetcode103
                     {
                         queue.Enqueue(outQueue.right);
                     }
+                }
 
-                    if (flag)
-                    {
-                        level.Reverse();
-                    }
-
+                if (flag)
+                {
+                    level.Reverse();
                 }
 
                 flag = !flag;
