@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 namespace leetcode101
 {
     public class Tree
     {
-        private readonly List<int> _list;
-        public Tree()
-        {
-            _list = new List<int>();
-        }
-
         /// <summary>
         /// 101. 对称二叉树
         /// </summary>

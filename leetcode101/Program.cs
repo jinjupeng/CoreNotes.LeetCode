@@ -19,7 +19,7 @@ namespace leetcode101
             root.right = new TreeNode(2);
             root.left.left = new TreeNode(2);
             root.right.left = new TreeNode(2);
-            var data = tree.IsSymmetric(root);
+            var data = tree.IsSymmetric(root); // false
             Console.WriteLine("Hello World!");
         }
     }
