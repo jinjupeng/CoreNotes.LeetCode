@@ -7,8 +7,9 @@ namespace leetcode44
         static void Main(string[] args)
         {
             var regex = new Regex();
-            var s = "acdcb";
-            var p = "a*c?b";
+            // 该实例出现超出时间限制错误
+            var s = "aaabbbaabaaaaababaabaaabbabbbbbbbbaabababbabbbaaaaba";
+            var p = "a*******b";
             var data = regex.IsMatch(s, p);
             Console.WriteLine("Hello World!");
         }

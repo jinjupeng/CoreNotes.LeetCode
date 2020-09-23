@@ -8,7 +8,9 @@
         private int _patternLen; // 正则表达式长度
 
         /// <summary>
-        /// 通配符匹配
+        /// 通配符匹配（回溯算法 + 递归）
+        /// TODO：最简单的实现方式，直接采用深度遍历递归的方式来做。缺点是中间结果没有记录，导致多次重复递归，因此超时。
+        /// TODO：动态规划
         /// </summary>
         /// <param name="s">字符串</param>
         /// <param name="p">通配符</param>
