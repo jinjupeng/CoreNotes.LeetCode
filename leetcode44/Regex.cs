@@ -1,78 +1,49 @@
 ﻿namespace leetcode44
 {
-    // TODO：递归需要剪枝，会超时
     public class Regex
     {
-        private bool _matched; // 默认不匹配false
-        private char[] _pattern; // 正则表达式
-        private int _patternLen; // 正则表达式长度
-
         /// <summary>
-        /// 通配符匹配（回溯算法 + 递归）
-        /// TODO：最简单的实现方式，直接采用深度遍历递归的方式来做。缺点是中间结果没有记录，导致多次重复递归，因此超时。
-        /// TODO：动态规划
+        /// 44. 通配符匹配
         /// </summary>
         /// <param name="s">字符串</param>
         /// <param name="p">通配符</param>
         /// <returns></returns>
         public bool IsMatch(string s, string p)
         {
-            _pattern = p.ToCharArray();
-            _patternLen = p.Length;
-            _matched = false;
-            RMatch(0, 0, s.ToCharArray(), s.Length);
-            return _matched;
-        }
-
-        /// <summary>
-        /// 通配符匹配
-        /// </summary>
-        /// <param name="ti">文本串下标</param>
-        /// <param name="pj">正则表达式下标</param>
-        /// <param name="text">文本串</param>
-        /// <param name="textLen">文本串长度</param>
-        private void RMatch(int ti, int pj, char[] text, int textLen)
-        {
-            // 如果已经匹配了，就不要继续递归了
-            if (_matched) return;
-
-            // 正则表达式到结尾了
-            if (pj == _patternLen)
+            var sp = 0; // 字符串索引位置
+            var pp = 0; // 通配符索引位置
+            var match = 0; // 匹配索引位置
+            var star = -1; // '*'字符出现的索引位置
+            while (sp < s.Length)
             {
-                // 文本串也到结尾了
-                if (ti == textLen) _matched = true;
-                return;
+                if (pp < p.Length && (s[sp] == p[pp] || p[pp] == '?'))
+                {
+                    sp++;
+                    pp++;
+                }else if (pp < p.Length && p[pp] == '*')
+                {
+                    star = pp;
+                    match = sp;
+                    pp++;
+                } else if (star != -1)
+                {
+                    pp = star + 1;
+                    match++;
+                    sp = match;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
-            switch (_pattern[pj])
+            // 当字符串s匹配完成后，通配符p还未匹配完成
+            while (pp < p.Length && p[pp] == '*')
             {
-                // *可以匹配任意字符串（包括空字符串）
-                case '*':
-                    {
-                        for (var k = 0; k <= textLen - ti; ++k)
-                        {
-                            RMatch(ti + k, pj + 1, text, textLen);
-                        }
-
-                        break;
-                    }
-                // ?可以匹配任何单个字符
-                case '?':
-                    // RMatch(ti, pj + 1, text, textLen);
-                    RMatch(ti + 1, pj + 1, text, textLen);
-
-                    break;
-                // 纯字符匹配才行
-                default:
-                    {
-                        if (ti < textLen && _pattern[pj] == text[ti])
-                        {
-                            RMatch(ti + 1, pj + 1, text, textLen);
-                        }
-
-                        break;
-                    }
+                pp++;
             }
+
+            return pp == p.Length;
         }
     }
 }
