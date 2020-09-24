@@ -25,7 +25,6 @@ namespace leetcode107
             {
                 var size = queueNodes.Count;
                 var item = new List<int>();
-                // item.Clear();
 
                 for (var i = 0; i < size; i++)
                 {
